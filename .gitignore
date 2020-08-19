@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/ECSBasicTutorial/.vs
+/ECSBasicTutorial/ECSApp/bin/Debug/netcoreapp3.1
+/ECSBasicTutorial/ECSApp/obj
+/ECSBasicTutorial/ECSEngine/bin/Debug/netstandard2.0
+/ECSBasicTutorial/ECSEngine/obj
