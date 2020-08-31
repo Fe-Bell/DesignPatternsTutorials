@@ -4,4 +4,4 @@ This repository features a collection of code samples and snippets from my Desig
 
 Wheter you're already studying through my tutorials, or is just visiting, welcome, and I hope you find any of this content useful on your journey.
 
-The sample code from this repository is free to use and licensed under the MIT License.
+The sample code from this repository is free to use and licensed under the permissive [MIT License](LICENSE).
