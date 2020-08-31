@@ -1,4 +1,5 @@
 ﻿using ObjectPool.Interface;
+using System;
 using System.Collections.Generic;
 
 namespace ObjectPool
@@ -173,7 +174,7 @@ namespace ObjectPool
             for (int i = 0; i < pool.Count; i++)
             {
                 T _component = pool[i];
-                if (_component.ID == id)
+                if (_component != null && _component.ID == id)
                 {
                     component = _component;
                     break;
@@ -193,7 +194,7 @@ namespace ObjectPool
             for (int i = 0; i < pool.Count; i++)
             {
                 T _component = pool[i];
-                if (_component.Name == name)
+                if (_component != null && _component.Name == name)
                 {
                     component = _component;
                     break;
@@ -218,8 +219,8 @@ namespace ObjectPool
 
             for(int i = 0; i < pool.Count; i++)
             {
-                T component = pool[i];
-                if(component is T1)
+                T _component = pool[i];
+                if(_component != null && _component is T1)
                 {
                     count++;
                 }
@@ -230,6 +231,18 @@ namespace ObjectPool
         /// <summary>
         /// Releases internal resources.
         /// </summary>
-        public void Dispose() => pool.Clear();
+        public void Dispose()
+        {
+            for (int i = 0; i < pool.Count; i++)
+            {
+                T _component = pool[i];
+                if (_component != null && typeof(IDisposable).IsAssignableFrom(_component.GetType()))
+                {
+                    (_component as IDisposable).Dispose();
+                }
+            }
+
+            pool.Clear();
+        }
     }
 }
