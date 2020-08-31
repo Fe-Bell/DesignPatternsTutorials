@@ -9,3 +9,6 @@
 /ECSBasicTutorial/ECSEngine/bin
 /ECSBasicTutorial/ECSEngine/obj
 /ECSBasicTutorial/bin
+/ObjectPool/.vs/ObjectPool/v16
+/ObjectPool/bin/Debug/netcoreapp3.1
+/ObjectPool/ObjectPool/obj
