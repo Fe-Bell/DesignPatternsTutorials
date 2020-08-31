@@ -8,21 +8,21 @@ namespace ObjectPool
     {
         static void Main(string[] args)
         {
-            TestObjectPool1();
+            var components = CreateComponents(3);
+
+            TestObjectPool1(components);
 
             Console.WriteLine("");
             Console.WriteLine("");
 
-            TestObjectPool2();
+            TestObjectPool2(components);
 
             Console.ReadKey();
         }
 
-        static void TestObjectPool1()
+        static void TestObjectPool1(List<TestComponent> components)
         {
             Console.WriteLine("Testing ObjectPool1...");
-
-            var components = CreateComponents(3);
 
             var pool = new ObjectPool1<TestComponent>();
             for(int i = 0; i < components.Count; i++)
@@ -47,7 +47,7 @@ namespace ObjectPool
             {
                 if (pool.TryGetPrevious(out TestComponent customComponent))
                 {
-                    Console.WriteLine(string.Format("Next element is \"{0}\", ID={1}", customComponent.Name, customComponent.ID));
+                    Console.WriteLine(string.Format("Previous element is \"{0}\", ID={1}", customComponent.Name, customComponent.ID));
                 }
 
                 Console.WriteLine(string.Format("Current pool size is {0}", pool.GetCount()));
@@ -60,11 +60,9 @@ namespace ObjectPool
             Console.WriteLine("End Testing ObjectPool1...");
         }
 
-        static void TestObjectPool2()
+        static void TestObjectPool2(List<TestComponent> components)
         {
             Console.WriteLine("Testing ObjectPool2...");
-
-            var components = CreateComponents(3);
 
             var pool = new ObjectPool2<TestComponent>();
             for (int i = 0; i < components.Count; i++)
