@@ -56,17 +56,19 @@ namespace ObjectPool
         {
             if (value != null)
             {
-                //If the requested element was the last object in use
-                if (value.ID == indexOfLastObjectUsed)
+                //Check if the object is in the pool
+                int indexOfValue = pool.IndexOf(value);
+                if(indexOfValue >= 0)
                 {
-                    //Decrement the index to the previous
-                    if (indexOfLastObjectUsed >= 0 && indexOfLastObjectUsed < pool.Count)
+                    //If the requested element was the last object in use
+                    if (indexOfValue == indexOfLastObjectUsed)
                     {
+                        //Decrement the index, pointing to the previous element
                         indexOfLastObjectUsed--;
                     }
-                }
 
-                return pool.Remove(value);
+                    return pool.Remove(value);
+                }
             }
 
             return false;
