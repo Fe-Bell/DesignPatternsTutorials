@@ -19,6 +19,10 @@ namespace ObjectPool
         /// The index of the last element used by a third party.
         /// </summary>
         private int indexOfLastObjectUsed = -1;
+        /// <summary>
+        /// Stores the last lookup direction in the pool.
+        /// </summary>
+        private bool isMovingForward = true;
 
         /// <summary>
         /// Object pool that does not rely on any property of the internal components, beside their ID.
@@ -63,8 +67,17 @@ namespace ObjectPool
                     //If the requested element was the last object in use
                     if (indexOfValue == indexOfLastObjectUsed)
                     {
-                        //Decrement the index, pointing to the previous element
-                        indexOfLastObjectUsed--;
+                       //If moving forward, go back one element, otherwise advance one.
+                        if(isMovingForward)
+                        {
+                            //Decrement the index, pointing to the previous element
+                            indexOfLastObjectUsed--;
+                        }
+                        else
+                        {
+                            //Increment the index, pointing to the next element
+                            indexOfLastObjectUsed++;
+                        }                       
                     }
 
                     return pool.Remove(value);
@@ -81,6 +94,8 @@ namespace ObjectPool
         public bool TryGetNext(out T value)
         {
             value = default;
+            isMovingForward = true;
+
             //Checks if there is an object selected
             if (indexOfLastObjectUsed >= 0)
             {
@@ -127,6 +142,8 @@ namespace ObjectPool
         public bool TryGetPrevious(out T value)
         {
             value = default;
+            isMovingForward = false;
+
             //Checks if there is an object selected
             if (indexOfLastObjectUsed >= 0)
             {
