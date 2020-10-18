@@ -12,3 +12,7 @@
 /ObjectPool/.vs/ObjectPool/v16
 /ObjectPool/bin/Debug/netcoreapp3.1
 /ObjectPool/ObjectPool/obj
+/Singleton/.vs/Singleton
+/ObjectPool/.vs/ObjectPool/DesignTimeBuild
+/Singleton/bin
+/Singleton/Singleton/obj
